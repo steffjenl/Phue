@@ -460,6 +460,29 @@ class Group implements LightInterface
     }
 
     /**
+     * Set Wake Up Light on group
+     *
+     * @param mixed $transitiontime
+     *            Transitiontime (default 60)
+     *
+     * @return self This object
+     */
+    public function setWakeUpLight($transitiontime = 60)
+    {
+        // Set group in begin state
+        $x = new SetGroupState($this);
+        $y = $x->wakeuplight(0,SetGroupState::BRIGHTNESS_MIN);
+        $this->client->sendCommand($y);
+
+        // Set group in end state with transitiontime
+        $x = new SetGroupState($this);
+        $y = $x->wakeuplight($transitiontime,SetGroupState::BRIGHTNESS_MAX);
+        $this->client->sendCommand($y);
+
+        return $this;
+    }
+
+    /**
      * Delete group
      */
     public function delete()

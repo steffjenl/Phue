@@ -407,6 +407,41 @@ class SetLightState implements CommandInterface, ActionableInterface
     }
 
     /**
+     * Wake Up Light
+     *
+     * @param double $transitionTime
+     *            Time in seconds for transition
+     * @param double $bri
+     *            Brightness
+     *
+     * @throws \InvalidArgumentException
+     *
+     * @return self This object
+     */
+    public function wakeuplight($transitionTime = 60, $bri = self::BRIGHTNESS_MIN)
+    {
+        // Don't continue if seconds is not valid
+        if ((double) $transitionTime < 0) {
+            throw new \InvalidArgumentException("Time must be at least 0");
+        }
+
+        // Don't continue if brightness level is invalid
+        if (! (self::BRIGHTNESS_MIN <= $bri && $bri <= self::BRIGHTNESS_MAX)) {
+            throw new \InvalidArgumentException(
+                "Brightness must be between " . self::BRIGHTNESS_MIN . " and " .
+                self::BRIGHTNESS_MAX
+            );
+        }
+
+        $this->params['bri'] = (int) $bri;
+        $this->params['on'] = (bool) true;
+        $this->params['xy'] = [0.5243,0.4137];
+        $this->params['transitiontime'] = (int) ($transitionTime * 10); // Value is in 1/10 seconds, so convert automatically
+
+        return $this;
+    }
+
+    /**
      * Send command
      *
      * @param Client $client

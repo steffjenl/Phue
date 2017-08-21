@@ -443,6 +443,29 @@ class Light implements LightInterface
     }
 
     /**
+     * Set Wake Up Light on light
+     *
+     * @param mixed $transitiontime
+     *            Transitiontime (default 60)
+     *
+     * @return self This object
+     */
+    public function setWakeUpLight($transitiontime = 60)
+    {
+        // Set light in begin state
+        $x = new SetLightState($this);
+        $y = $x->wakeuplight(0,SetGroupState::BRIGHTNESS_MIN);
+        $this->client->sendCommand($y);
+
+        // Set light in end state with transitiontime
+        $x = new SetLightState($this);
+        $y = $x->wakeuplight($transitiontime,SetGroupState::BRIGHTNESS_MAX);
+        $this->client->sendCommand($y);
+
+        return $this;
+    }
+
+    /**
      * Get whether or not the bulb is reachable.
      *
      * @return bool
