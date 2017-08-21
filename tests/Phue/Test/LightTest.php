@@ -23,7 +23,7 @@ class LightTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         // Mock client
-        $this->mockClient = $this->getMock('\Phue\Client', 
+        $this->mockClient = $this->getMock('\Phue\Client',
             // ['sendCommand'],
             // ['127.0.0.1']
             array(
@@ -31,7 +31,7 @@ class LightTest extends \PHPUnit_Framework_TestCase
             ), array(
                 '127.0.0.1'
             ));
-        
+
         // Build stub attributes
         $this->attributes = (object) array(
             'name' => 'Hue light',
@@ -55,7 +55,7 @@ class LightTest extends \PHPUnit_Framework_TestCase
                 'reachable' => true
             )
         );
-        
+
         // Create light object
         $this->light = new Light(5, $this->attributes, $this->mockClient);
     }
@@ -95,10 +95,10 @@ class LightTest extends \PHPUnit_Framework_TestCase
             ->method('sendCommand')
             ->with($this->isInstanceOf('\Phue\Command\SetLightName'))
             ->will($this->returnValue($this->light));
-        
+
         // Ensure setName returns self
         $this->assertEquals($this->light, $this->light->setName('new name'));
-        
+
         // Ensure new name can be retrieved by getName
         $this->assertEquals('new name', $this->light->getName());
     }
@@ -130,7 +130,7 @@ class LightTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetModel()
     {
-        $this->assertInstanceOf('\Phue\LightModel\AbstractLightModel', 
+        $this->assertInstanceOf('\Phue\LightModel\AbstractLightModel',
             $this->light->getModel());
     }
 
@@ -151,7 +151,7 @@ class LightTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetSoftwareVersion()
     {
-        $this->assertEquals($this->attributes->swversion, 
+        $this->assertEquals($this->attributes->swversion,
             $this->light->getSoftwareVersion());
     }
 
@@ -164,13 +164,13 @@ class LightTest extends \PHPUnit_Framework_TestCase
     public function testIsSetOn()
     {
         $this->stubMockClientSendSetLightStateCommand();
-        
+
         // Make sure original on state is retrievable
         $this->assertFalse($this->light->isOn());
-        
+
         // Ensure setOn returns self
         $this->assertEquals($this->light, $this->light->setOn(true));
-        
+
         // Make sure light attributes are updated
         $this->assertTrue($this->light->isOn());
     }
@@ -184,14 +184,14 @@ class LightTest extends \PHPUnit_Framework_TestCase
     public function testGetSetBrightness()
     {
         $this->stubMockClientSendSetLightStateCommand();
-        
+
         // Make sure original brightness is retrievable
-        $this->assertEquals($this->attributes->state->bri, 
+        $this->assertEquals($this->attributes->state->bri,
             $this->light->getBrightness());
-        
+
         // Ensure setBrightness returns self
         $this->assertEquals($this->light, $this->light->setBrightness(254));
-        
+
         // Make sure light attributes are updated
         $this->assertEquals(254, $this->light->getBrightness());
     }
@@ -205,13 +205,13 @@ class LightTest extends \PHPUnit_Framework_TestCase
     public function testGetSetHue()
     {
         $this->stubMockClientSendSetLightStateCommand();
-        
+
         // Make sure original hue is retrievable
         $this->assertEquals($this->attributes->state->hue, $this->light->getHue());
-        
+
         // Ensure setHue returns self
         $this->assertEquals($this->light, $this->light->setHue(30000));
-        
+
         // Make sure light attributes are updated
         $this->assertEquals(30000, $this->light->getHue());
     }
@@ -225,14 +225,14 @@ class LightTest extends \PHPUnit_Framework_TestCase
     public function testGetSetSaturation()
     {
         $this->stubMockClientSendSetLightStateCommand();
-        
+
         // Make sure original saturation is retrievable
-        $this->assertEquals($this->attributes->state->sat, 
+        $this->assertEquals($this->attributes->state->sat,
             $this->light->getSaturation());
-        
+
         // Ensure setSaturation returns self
         $this->assertEquals($this->light, $this->light->setSaturation(200));
-        
+
         // Make sure light attributes are updated
         $this->assertEquals(200, $this->light->getSaturation());
     }
@@ -246,17 +246,17 @@ class LightTest extends \PHPUnit_Framework_TestCase
     public function testGetSetXY()
     {
         $this->stubMockClientSendSetLightStateCommand();
-        
+
         // Make sure original xy is retrievable
         $this->assertEquals(
             array(
                 'x' => $this->attributes->state->xy[0],
                 'y' => $this->attributes->state->xy[1]
             ), $this->light->getXY());
-        
+
         // Ensure setXY returns self
         $this->assertEquals($this->light, $this->light->setXY(0.1, 0.2));
-        
+
         // Make sure light attributes are updated
         $this->assertEquals(
             array(
@@ -309,14 +309,14 @@ class LightTest extends \PHPUnit_Framework_TestCase
     public function testGetSetColorTemp()
     {
         $this->stubMockClientSendSetLightStateCommand();
-        
+
         // Make sure original color temp is retrievable
-        $this->assertEquals($this->attributes->state->ct, 
+        $this->assertEquals($this->attributes->state->ct,
             $this->light->getColorTemp());
-        
+
         // Ensure setColorTemp returns self
         $this->assertEquals($this->light, $this->light->setColorTemp(412));
-        
+
         // Make sure light attributes are updated
         $this->assertEquals(412, $this->light->getColorTemp());
     }
@@ -330,14 +330,14 @@ class LightTest extends \PHPUnit_Framework_TestCase
     public function testGetSetAlert()
     {
         $this->stubMockClientSendSetLightStateCommand();
-        
+
         // Make sure original alert is retrievable
-        $this->assertEquals($this->attributes->state->alert, 
+        $this->assertEquals($this->attributes->state->alert,
             $this->light->getAlert());
-        
+
         // Ensure setAlert returns self
         $this->assertEquals($this->light, $this->light->setAlert('lselect'));
-        
+
         // Make sure light attributes are updated
         $this->assertEquals('lselect', $this->light->getAlert());
     }
@@ -351,14 +351,14 @@ class LightTest extends \PHPUnit_Framework_TestCase
     public function testGetSetEffect()
     {
         $this->stubMockClientSendSetLightStateCommand();
-        
+
         // Make sure original effect is retrievable
-        $this->assertEquals($this->attributes->state->effect, 
+        $this->assertEquals($this->attributes->state->effect,
             $this->light->getEffect());
-        
+
         // Ensure setEffect returns self
         $this->assertEquals($this->light, $this->light->setEffect('colorloop'));
-        
+
         // Make sure light attributes are updated
         $this->assertEquals('colorloop', $this->light->getEffect());
     }
@@ -371,7 +371,7 @@ class LightTest extends \PHPUnit_Framework_TestCase
     public function testGetColormode()
     {
         $this->assertEquals(
-            $this->attributes->state->colormode, 
+            $this->attributes->state->colormode,
             $this->light->getColorMode()
         );
     }
@@ -404,7 +404,7 @@ class LightTest extends \PHPUnit_Framework_TestCase
      */
     public function testIsReachable()
     {
-        $this->assertEquals($this->attributes->state->reachable, 
+        $this->assertEquals($this->attributes->state->reachable,
             $this->light->isReachable());
     }
 
@@ -416,6 +416,46 @@ class LightTest extends \PHPUnit_Framework_TestCase
     public function testToString()
     {
         $this->assertEquals($this->light->getId(), (string) $this->light);
+    }
+
+    public function testIssues121_1()
+    {
+        $attributes = clone $this->attributes;
+        $attributes->state->on = false;
+        $attributes->state->reachable = false;
+        $light = new Light(5, $attributes, $this->mockClient);
+        $this->assertFalse($light->isOn());
+        $this->assertFalse($light->isReachable());
+    }
+
+    public function testIssues121_2()
+    {
+        $attributes = clone $this->attributes;
+        $attributes->state->on = true;
+        $attributes->state->reachable = false;
+        $light = new Light(5, $attributes, $this->mockClient);
+        $this->assertFalse($light->isOn());
+        $this->assertFalse($light->isReachable());
+    }
+
+    public function testIssues121_3()
+    {
+        $attributes = clone $this->attributes;
+        $attributes->state->on = false;
+        $attributes->state->reachable = true;
+        $light = new Light(5, $attributes, $this->mockClient);
+        $this->assertFalse($light->isOn());
+        $this->assertTrue($light->isReachable());
+    }
+
+    public function testIssues121_4()
+    {
+        $attributes = clone $this->attributes;
+        $attributes->state->on = true;
+        $attributes->state->reachable = true;
+        $light = new Light(5, $attributes, $this->mockClient);
+        $this->assertTrue($light->isOn());
+        $this->assertTrue($light->isReachable());
     }
 
     /**
