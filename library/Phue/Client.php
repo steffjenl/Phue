@@ -152,6 +152,16 @@ class Client
     }
 
     /**
+     * Get group by Id
+     *
+     * @return Group
+     */
+    public function getGroupById($groupId)
+    {
+        return $this->sendCommand(new GetGroupById($groupId));
+    }
+
+    /**
      * Get schedules
      *
      * @return Schedule[] List of Schedule objects
