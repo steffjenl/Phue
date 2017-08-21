@@ -11,6 +11,7 @@ namespace Phue;
 use Phue\Command\CommandInterface;
 use Phue\Command\GetBridge;
 use Phue\Command\GetGroups;
+use Phue\Command\GetGroupById;
 use Phue\Command\GetLights;
 use Phue\Command\GetRules;
 use Phue\Command\GetScenes;
