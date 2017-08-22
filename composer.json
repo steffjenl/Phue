@@ -1,12 +1,13 @@
 {
     "name": "steffjenl/phue",
-    "description": "Phue - Philips Hue PHP client",
+    "description": "Phue - Philips Hue PHP client for Laravel",
     "type": "library",
     "keywords": [
         "phue",
         "philips",
         "hue",
-        "client"
+        "client",
+        "laravel"
     ],
     "homepage": "http://github.com/steffjenl/Phue",
     "license": "BSD-3-Clause",
@@ -15,10 +16,17 @@
             "name":  "Michael Squires",
             "email": "sqmk@php.net",
             "role":  "lead"
+        },
+        {
+            "name":  "Stèphan Eizinga",
+            "email": "stephan.eizinga@gmail.com",
+            "role":  "dev"
         }
     ],
     "require": {
-        "php": ">=5.3.0"
+        "php": ">=5.3.0",
+        "illuminate/support": "^5.4",
+        "illuminate/console": "^5.4"
     },
     "require-dev": {
         "mockery/mockery": "0.8.0",
