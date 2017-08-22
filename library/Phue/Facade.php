@@ -13,6 +13,6 @@ class Facade extends \Illuminate\Support\Facades\Facade
 
     protected static function connect($ip = '', $username = '')
     {
-        return new Phue($ip = '', $username = '');
+        return (new Phue($ip = '', $username = ''))->getClient();
     }
 }

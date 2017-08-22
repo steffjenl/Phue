@@ -95,7 +95,7 @@ Here's how to instantiate a client object:
 ```php
 <?php
 
-$client = new \Phue\Phue();
+$client = (new Phue())->getClient();
 ```
 
 Here's how to instantiate a client object with facades:
