@@ -1,4 +1,4 @@
-# Phue - Philips Hue client
+# Phue - Philips Hue client for Laravel 5.4
 
 [![Latest Stable Version](https://poser.pugx.org/sqmk/Phue/version)](https://packagist.org/packages/sqmk/Phue)
 [![Build Status](https://api.travis-ci.org/sqmk/Phue.svg?branch=master)](https://travis-ci.org/sqmk/Phue)
@@ -25,7 +25,7 @@ Interested in API docs? You can check out the [Philips API documentation](http:/
 
 ## Requirements
 
-* PHP 5.3+
+* PHP 7.0+
 * cURL extension (optional)
 
 ## Installation
@@ -46,6 +46,44 @@ require_once __DIR__ . '/vendor/autoload.php';
 $client = new \Phue\Client('10.0.1.1', 'yourusername');
 ```
 
+## Installation Laravel
+
+Now add the service provider in `config/app.php` file:
+
+```php
+'providers' => [
+    // ...
+    Phue\PhueServiceProvider::class,
+];
+
+You can publish the config file with:
+
+```bash
+php artisan vendor:publish --provider="Phue\PhueServiceProvider" --tag="config"
+```
+
+This is the contents of the published `config/phue.php` config file:
+
+```php
+return [
+    /*
+     * Philips Bride IP Address
+     *
+     * Use phue:bridge-finder command for finding the bride ip address
+     */
+
+    'ip' => env('HUE_IP'),
+
+    /*
+     * Philips Bride API Username
+     *
+     * Use phue:create-user command for creating an new username
+     */
+
+    'username' => env('HUE_USERNAME'),
+];
+```
+
 ## Usage
 
 For all examples, it is assumed that the autoloader is included somewhere in your PHP app.
@@ -57,7 +95,15 @@ Here's how to instantiate a client object:
 ```php
 <?php
 
-$client = new \Phue\Client('10.0.1.31', 'sqmk');
+$client = new \Phue\Phue();
+```
+
+Here's how to instantiate a client object with facades:
+
+```php
+<?php
+
+$client = Phue::connect();
 ```
 
 ### Issuing commands, testing connection and authorization

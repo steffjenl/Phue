@@ -1,9 +1,6 @@
 <?php
 namespace Phue;
 
-use Illuminate\Routing\Router;
-use Illuminate\Session\SessionManager;
-
 class PhueServiceProvider extends \Illuminate\Support\ServiceProvider
 {
     /**
@@ -33,6 +30,21 @@ class PhueServiceProvider extends \Illuminate\Support\ServiceProvider
             __DIR__.'/../../config/phue.php',
             'phue'
         );
+
+        $this->app->singleton(Client::class, function ($app) {
+            return new Client(config('phue.ip'), config('phue.username'));
+        });
+
+    }
+
+    /**
+     * Get the services provided by the provider.
+     *
+     * @return array
+     */
+    public function provides()
+    {
+        return [Client::class];
     }
 
 }

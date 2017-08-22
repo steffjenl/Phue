@@ -12,6 +12,15 @@ class ListLights extends Command
 
     public function handle()
     {
-        //
+        try
+        {
+            $client = (new \Phue\Phue())->connect();
+        }
+        catch (\Exception $exception)
+        {
+            $this->error($exception->getMessage());
+        }
+
+
     }
 }
