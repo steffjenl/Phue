@@ -60,7 +60,7 @@ Now add the service provider in `config/app.php` file:
 You can publish the config file with:
 
 ```bash
-php artisan vendor:publish --provider="Phue\PhueServiceProvider" --tag="config"
+$ php artisan vendor:publish --provider="Phue\PhueServiceProvider" --tag="config"
 ```
 
 This is the contents of the published `config/phue.php` config file:
