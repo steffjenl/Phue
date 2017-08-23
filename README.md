@@ -55,6 +55,7 @@ Now add the service provider in `config/app.php` file:
     // ...
     Phue\PhueServiceProvider::class,
 ];
+```
 
 You can publish the config file with:
 
