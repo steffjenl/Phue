@@ -30,7 +30,7 @@ Interested in API docs? You can check out the [Philips API documentation](http:/
 
 ## Installation
 
-The Phue library is available in Packagist. You'll want to include ```sqmk/phue``` as a dependency in your project using composer. If you are not familiar with composer, check it out here: [Composer](http://getcomposer.org)
+The Phue library is available in Packagist. You'll want to include ```steffjenl/phue``` as a dependency in your project using composer. If you are not familiar with composer, check it out here: [Composer](http://getcomposer.org)
 
 You can also use this library without composer. The library directory is ```library```. You'll want to map your namespace ```Phue``` to this directory in your autoloader of choice.
 
@@ -46,7 +46,24 @@ require_once __DIR__ . '/vendor/autoload.php';
 $client = new \Phue\Client('10.0.1.1', 'yourusername');
 ```
 
-## Installation Laravel
+## Composer Example
+```json
+"require": {
+        // ...
+        "steffjenl/phue": "^2.0",
+    },
+"repositories": [
+        {
+            "type": "git",
+            "url": "https://github.com/steffjenl/Phue.git"
+        }
+    ],
+```
+
+## Installation Laravel 5.5
+We are using using Laravel 5.5 Package Discovery. PhueServiceProvider and Phue Facade will automatically registered.
+
+## Installation Laravel 5.4
 
 Now add the service provider in `config/app.php` file:
 
@@ -56,6 +73,12 @@ Now add the service provider in `config/app.php` file:
     Phue\PhueServiceProvider::class,
 ];
 ```
+
+```php
+'aliases' => [
+    // ...
+   'Phue' => Phue\Facade::class,
+];
 
 You can publish the config file with:
 
@@ -104,7 +127,7 @@ Here's how to instantiate a client object with facades:
 ```php
 <?php
 
-$client = Phue::connect();
+$client = Phue::getClient();
 ```
 
 ### Issuing commands, testing connection and authorization
@@ -541,6 +564,11 @@ Here's how to run this script:
 ```
 $ ./bin/phue-bridge-finder
 ```
+With Laravel you an use commands in artisan:
+```
+$ php artisan phue:bridge-finder {ipaddress?}
+```
+You can give an ip address as a argument or leave empty when using ip address in .env file.
 
 Assuming all goes well, you'll get results like this:
 ```
@@ -570,6 +598,10 @@ Here's how to run the script for authenticating/creating a user:
 
 ```
 $ ./bin/phue-create-user 10.0.1.31
+```
+With Laravel you an use commands in artisan:
+```
+$ php artisan phue:create-user 
 ```
 
 If the connection is ok, you will get a response similar to this:
@@ -604,6 +636,10 @@ You can pass the same arguments for ```phue-light-finder``` as you did with ```p
 
 ```
 $ ./bin/phue-light-finder 10.0.1.31 yourusername
+```
+With Laravel you an use commands in artisan:
+```
+$ php artisan phue:light-finder
 ```
 
 Example results are as follows:
