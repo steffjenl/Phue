@@ -14,9 +14,12 @@ use Phue\Command\GetGroups;
 use Phue\Command\GetGroupById;
 use Phue\Command\GetLights;
 use Phue\Command\GetLightById;
+use Phue\Command\GetRuleById;
 use Phue\Command\GetRules;
 use Phue\Command\GetScenes;
+use Phue\Command\GetScheduleById;
 use Phue\Command\GetSchedules;
+use Phue\Command\GetSensorById;
 use Phue\Command\GetSensors;
 use Phue\Command\GetTimezones;
 use Phue\Command\GetUsers;
@@ -184,6 +187,16 @@ class Client
     }
 
     /**
+     * Get schedule by id
+     *
+     * @return Schedule Schedule object
+     */
+    public function getScheduleById($scheduleid)
+    {
+        return $this->sendCommand(new GetScheduleById($scheduleid));
+    }
+
+    /**
      * Get scenes
      *
      * @return Scene[] List of Scene objects
@@ -191,6 +204,16 @@ class Client
     public function getScenes()
     {
         return $this->sendCommand(new GetScenes());
+    }
+
+    /**
+     * Get scenes by id
+     *
+     * @return Scene Scene object
+     */
+    public function getSceneById($sceneid)
+    {
+        return $this->sendCommand(new GetSensorById($sceneid));
     }
 
     /**
@@ -204,6 +227,16 @@ class Client
     }
 
     /**
+     * Get sensor by id
+     *
+     * @return Sensor Sensor object
+     */
+    public function getSensorById($sensorid)
+    {
+        return $this->sendCommand(new GetSensorById($sensorid));
+    }
+
+    /**
      * Get rules
      *
      * @return Rule[] List of Rule objects
@@ -211,6 +244,16 @@ class Client
     public function getRules()
     {
         return $this->sendCommand(new GetRules());
+    }
+
+    /**
+     * Get rule by id
+     *
+     * @return Rule Rule object
+     */
+    public function getRuleById($ruleid)
+    {
+        return $this->sendCommand(new GetRuleById($ruleid));
     }
 
     /**
