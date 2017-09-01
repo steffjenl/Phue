@@ -13,6 +13,7 @@ use Phue\Command\GetBridge;
 use Phue\Command\GetGroups;
 use Phue\Command\GetGroupById;
 use Phue\Command\GetLights;
+use Phue\Command\GetLightById;
 use Phue\Command\GetRules;
 use Phue\Command\GetScenes;
 use Phue\Command\GetSchedules;
@@ -140,6 +141,16 @@ class Client
     public function getLights()
     {
         return $this->sendCommand(new GetLights());
+    }
+
+    /**
+     * Get light by id
+     *
+     * @return Light[] List of Light objects
+     */
+    public function getLightById($lightid)
+    {
+        return $this->sendCommand(new GetLightById($lightid));
     }
 
     /**
