@@ -101,9 +101,8 @@ class Facade extends \Illuminate\Support\Facades\Facade
      *
      * @return Group
      */
-    protected static function setWakeUpLightOnGroup($id,$transitiontime = 60)
+    protected static function setWakeUpLightOnGroup($id, $transitiontime = 60)
     {
         return (new Phue())->getClient()->getGroupById($id)->setWakeUpLight($transitiontime);
     }
-
 }

@@ -18,24 +18,19 @@ class Phue
 
     public function connect($ip = '', $username = '')
     {
-        if (empty(config('phue.ip',$ip)))
-        {
+        if (empty(config('phue.ip', $ip))) {
             throw new \Exception("IP Address not found in config");
         }
 
-        if (empty(config('phue.username',$username)))
-        {
+        if (empty(config('phue.username', $username))) {
             throw new \Exception("Username not found in config");
         }
 
-        $client = new \Phue\Client(config('phue.ip',$ip),config('phue.username',$username));
+        $client = new \Phue\Client(config('phue.ip', $ip), config('phue.username', $username));
 
-        try
-        {
+        try {
             $client->sendCommand(new \Phue\Command\Ping);
-        }
-        catch (\Phue\Transport\Exception\ConnectionException $e)
-        {
+        } catch (\Phue\Transport\Exception\ConnectionException $e) {
             throw new \Exception("Can't connect to hue bridge");
         }
 

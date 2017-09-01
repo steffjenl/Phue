@@ -436,7 +436,7 @@ class SetLightState implements CommandInterface, ActionableInterface
         $this->params['bri'] = (int) $bri;
         $this->params['on'] = (bool) true;
         $this->params['xy'] = [0.5243,0.4137];
-        $this->params['transitiontime'] = (int) ($transitionTime * 10); // Value is in 1/10 seconds, so convert automatically
+        $this->params['transitiontime'] = (int) ($transitionTime * 10);
 
         return $this;
     }

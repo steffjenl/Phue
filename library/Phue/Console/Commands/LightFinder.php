@@ -12,11 +12,9 @@ class LightFinder extends Command
 
     public function handle()
     {
-        try
-        {
+        try {
             $client = (new \Phue\Phue())->connect();
-        }
-        catch (\Exception $exception)
+        } catch (\Exception $exception)
         {
             $this->error($exception->getMessage());
         }

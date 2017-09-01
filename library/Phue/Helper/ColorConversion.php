@@ -90,14 +90,14 @@ class ColorConversion
             } else {
                 $color[$key] = (1.0 + 0.055) * pow($normalized, 1.0 / 2.4) - 0.055;
             }
-            $color[$key] = max(0,$color[$key]);
-            if($maxValue < $color[$key]){
+            $color[$key] = max(0, $color[$key]);
+            if ($maxValue < $color[$key]) {
                 $maxValue = $color[$key];
             }
 
         }
         foreach ($color as $key => $normalized) {
-            if($maxValue > 1){
+            if ($maxValue > 1) {
                 $color[$key] /= $maxValue;
             }
             // Scale back from a maximum of 1 to a maximum of 255

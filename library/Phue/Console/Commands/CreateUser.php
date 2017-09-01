@@ -53,16 +53,12 @@ class CreateUser extends Command
                     new \Phue\Command\CreateUser
                 );
 
-                $this->info("\n\n", "Successfully created new user: {
-        $response->username}");
-
+                $this->info("\n\nSuccessfully created new user: {$response->username}");
                 break;
             } catch (\Phue\Transport\Exception\LinkButtonException $e) {
                 $this->warning( " . ");
             } catch (Exception $e) {
-                $this->error( "\n\n", "Failure to create user . Please try again!" .
-                "\n". "Reason: {
-        $e->getMessage()}". "\n\n");
+                $this->error( "\n\nFailure to create user . Please try again!\nReason: {$e->getMessage()} \n\n");
                 break;
             }
             sleep(1);

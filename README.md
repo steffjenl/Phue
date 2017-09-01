@@ -1,7 +1,7 @@
 # Phue - Philips Hue client for Laravel 5.4
 
 [![Latest Stable Version](https://poser.pugx.org/sqmk/Phue/version)](https://packagist.org/packages/sqmk/Phue)
-[![Build Status](https://api.travis-ci.org/sqmk/Phue.svg?branch=master)](https://travis-ci.org/sqmk/Phue)
+[![Build Status](https://api.travis-ci.org/steffjenl/Phue.svg?branch=master)](https://travis-ci.org/steffjenl/Phue)
 
 
 ## Introduction

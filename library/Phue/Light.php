@@ -454,12 +454,12 @@ class Light implements LightInterface
     {
         // Set light in begin state
         $x = new SetLightState($this);
-        $y = $x->wakeuplight(0,SetGroupState::BRIGHTNESS_MIN);
+        $y = $x->wakeuplight(0, SetGroupState::BRIGHTNESS_MIN);
         $this->client->sendCommand($y);
 
         // Set light in end state with transitiontime
         $x = new SetLightState($this);
-        $y = $x->wakeuplight($transitiontime,SetGroupState::BRIGHTNESS_MAX);
+        $y = $x->wakeuplight($transitiontime, SetGroupState::BRIGHTNESS_MAX);
         $this->client->sendCommand($y);
 
         return $this;
