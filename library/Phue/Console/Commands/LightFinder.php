@@ -14,8 +14,7 @@ class LightFinder extends Command
     {
         try {
             $client = (new \Phue\Phue())->connect();
-        } catch (\Exception $exception)
-        {
+        } catch (\Exception $exception) {
             $this->error($exception->getMessage());
         }
 
@@ -28,7 +27,6 @@ class LightFinder extends Command
             );
         } catch (\Phue\Transport\Exception\ConnectionException $e) {
             $this->error("Issue connecting to bridge");
-
             exit(1);
         }
 
@@ -73,7 +71,6 @@ class LightFinder extends Command
                 $this->info("Found: Light #{$lightId}, {$lightName}");
             }
         } while(true);
-
         $this->info("Done scanning");
     }
 }

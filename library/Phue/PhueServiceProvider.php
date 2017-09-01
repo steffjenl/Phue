@@ -1,8 +1,10 @@
 <?php
+
 namespace Phue;
 
 class PhueServiceProvider extends \Illuminate\Support\ServiceProvider
 {
+
     /**
      * Perform post-registration booting of services.
      *
@@ -28,7 +30,8 @@ class PhueServiceProvider extends \Illuminate\Support\ServiceProvider
         }
     }
 
-    public function register() {
+    public function register()
+    {
         $this->mergeConfigFrom(
             __DIR__.'/../../config/phue.php',
             'phue'
@@ -38,7 +41,6 @@ class PhueServiceProvider extends \Illuminate\Support\ServiceProvider
             return new Client(config('phue.ip'), config('phue.username'));
         }
         );
-
     }
 
     /**
@@ -46,7 +48,10 @@ class PhueServiceProvider extends \Illuminate\Support\ServiceProvider
      *
      * @return array
      */
-    public function provides() {
-        return [Client::class];
+    public function provides()
+    {
+        return [
+            Client::class
+        ];
     }
 }

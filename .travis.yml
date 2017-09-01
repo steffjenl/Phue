@@ -8,14 +8,10 @@ before_install:
     - composer install --verbose --prefer-source --no-interaction -o
 
 script:
-    - ./vendor/bin/phpcs --standard=tests/phpcs.xml library/
+    - ./vendor/bin/phpcs --standard=tests/phpcs.xml --ignore=*PhueServiceProvider*,*LightFinder* library/
     - ./vendor/bin/phpunit --configuration=tests
 
 notifications:
     email: false
-
-matrix:
-  allow_failures:
-    - php: hhvm
 
 sudo: false

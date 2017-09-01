@@ -14,9 +14,7 @@ class ListLights extends Command
     {
         try {
             $client = (new \Phue\Phue())->connect();
-        }
-        catch (\Exception $exception)
-        {
+        } catch (\Exception $exception) {
             $this->error($exception->getMessage());
         }
 
